@@ -21,7 +21,7 @@ function LogIn(){
   // }, [navigate])
 
   async function sendLogIn() {
-    return fetch("http://localhost:5000/logIn", {
+    return fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/logIn", {
       method: 'POST', 
       mode: 'cors',
       headers: {

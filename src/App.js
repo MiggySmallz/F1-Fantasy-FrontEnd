@@ -21,7 +21,7 @@ function App(){
   }, [userName])
 
   async function getUserName() {
-    const response = await fetch("http://localhost:5000/getUserName", {
+    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/getUserName", {
     method: 'POST', 
     mode: 'cors',
     headers: {

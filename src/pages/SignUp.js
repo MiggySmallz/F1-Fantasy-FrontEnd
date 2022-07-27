@@ -15,7 +15,7 @@ function SignUp(){
   // })
 
   async function sendSignUp() {
-    const response = await fetch("http://localhost:5000/signUp", {
+    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/signUp", {
     method: 'POST', 
     mode: 'cors',
     headers: {

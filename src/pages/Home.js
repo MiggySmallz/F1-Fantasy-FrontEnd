@@ -21,7 +21,7 @@ function Home(){
   
 
   async function getApi(){
-    await fetch("http://localhost:5000/drivers").then(
+    await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/drivers").then(
       res => res.json()
     ).then(
       data => {

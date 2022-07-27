@@ -92,7 +92,7 @@ function Fantasy(){
 
   async function saveTeam() {
     console.log(teamList)
-    const response = await fetch("http://localhost:5000/saveTeam", {
+    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/saveTeam", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -108,7 +108,7 @@ function Fantasy(){
 
 
   async function getDrivers() {
-    const response = await fetch("http://localhost:5000/driversInfo", {
+    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/driversInfo", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -123,7 +123,7 @@ function Fantasy(){
   }
 
   async function getUsersTeams() {
-    const response = await fetch("http://localhost:5000/getUsersTeams", {
+    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/getUsersTeams", {
     method: 'POST', 
     mode: 'cors',
     headers: {
