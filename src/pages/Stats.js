@@ -42,7 +42,7 @@ function Stats(){
   };
 
   async function postData(year) {
-      const response = await fetch("https://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/sendYear", {
+      const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/sendYear", {
       method: 'POST', 
       mode: 'cors',
       headers: {
@@ -57,14 +57,14 @@ function Stats(){
   }
 
   async function getPic(){
-    const response = await fetch("https://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/get_image");
+    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/get_image");
     const imageBlob = await response.blob();
     const imageObjectURL = URL.createObjectURL(imageBlob);
     setImg(imageObjectURL);
   }
 
   async function getRaceResult(year,race) {
-    const response = await fetch("https://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/getRaceResults", {
+    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/getRaceResults", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -80,7 +80,7 @@ function Stats(){
 }
 
   async function getApi(){
-    await fetch("https://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/drivers").then(
+    await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/drivers").then(
       res => res.json()
     ).then(
       data => {
