@@ -9,6 +9,8 @@ import "./SigningForm.css"
 // function LogIn({ setToken }){
 function LogIn(){
   let navigate = useNavigate();
+  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [errorMessage, setErrorMessage] = useState(false)
@@ -21,7 +23,7 @@ function LogIn(){
   // }, [navigate])
 
   async function sendLogIn() {
-    return fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/logIn", {
+    return fetch(backend_url + "/logIn", {
       method: 'POST', 
       mode: 'cors',
       headers: {

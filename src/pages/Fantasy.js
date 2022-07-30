@@ -25,6 +25,8 @@ import Tsunoda from '../images/Yuki_Tsunoda.png'
 
 function Fantasy(){
 
+  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+
   
   const [budget, setBudget] = useState(100000000);
   const [constructors, setConstructors] = useState([]);
@@ -92,7 +94,7 @@ function Fantasy(){
 
   async function saveTeam() {
     console.log(teamList)
-    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/saveTeam", {
+    const response = await fetch(backend_url + "/saveTeam", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -108,7 +110,7 @@ function Fantasy(){
 
 
   async function getDrivers() {
-    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/driversInfo", {
+    const response = await fetch(backend_url + "/driversInfo", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -123,7 +125,7 @@ function Fantasy(){
   }
 
   async function getUsersTeams() {
-    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/getUsersTeams", {
+    const response = await fetch(backend_url + "/getUsersTeams", {
     method: 'POST', 
     mode: 'cors',
     headers: {

@@ -2,6 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 
 function Home(){
 
+  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
   const [data, setData] = useState("")
   const didMount = useRef(false);
   // const [img, setImg] = useState();
@@ -21,7 +22,7 @@ function Home(){
   
 
   async function getApi(){
-    await fetch("https://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/drivers").then(
+    await fetch(backend_url + "/drivers").then(
       res => res.json()
     ).then(
       data => {

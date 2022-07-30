@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(){
   
+  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token'));
   const [userName, setUserName] = useState();
 
@@ -21,7 +22,7 @@ function App(){
   }, [userName])
 
   async function getUserName() {
-    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/getUserName", {
+    const response = await fetch(backend_url + "/getUserName", {
     method: 'POST', 
     mode: 'cors',
     headers: {

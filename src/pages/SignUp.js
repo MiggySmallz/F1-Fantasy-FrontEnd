@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function SignUp(){
 
+  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -15,7 +16,7 @@ function SignUp(){
   // })
 
   async function sendSignUp() {
-    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/signUp", {
+    const response = await fetch(backend_url + "/signUp", {
     method: 'POST', 
     mode: 'cors',
     headers: {

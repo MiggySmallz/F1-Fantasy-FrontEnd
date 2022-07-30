@@ -11,6 +11,7 @@ function Stats(){
   const [selectedYear, setSelectedYear] = useState();
 
   const year = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
+  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
 
 
   let type = null;
@@ -42,7 +43,7 @@ function Stats(){
   };
 
   async function postData(year) {
-      const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/sendYear", {
+      const response = await fetch(backend_url + "/sendYear", {
       method: 'POST', 
       mode: 'cors',
       headers: {
@@ -57,14 +58,14 @@ function Stats(){
   }
 
   async function getPic(){
-    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/get_image");
+    const response = await fetch(backend_url + "/get_image");
     const imageBlob = await response.blob();
     const imageObjectURL = URL.createObjectURL(imageBlob);
     setImg(imageObjectURL);
   }
 
   async function getRaceResult(year,race) {
-    const response = await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/getRaceResults", {
+    const response = await fetch(backend_url + "/getRaceResults", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -80,7 +81,7 @@ function Stats(){
 }
 
   async function getApi(){
-    await fetch("http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com/drivers").then(
+    await fetch(backend_url + "/drivers").then(
       res => res.json()
     ).then(
       data => {
