@@ -2,7 +2,7 @@ import React, {useState, useEffect, useRef} from 'react'
 
 function Home(){
 
-  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
   const [data, setData] = useState("")
   const didMount = useRef(false);
   // const [img, setImg] = useState();

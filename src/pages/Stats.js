@@ -11,8 +11,7 @@ function Stats(){
   const [selectedYear, setSelectedYear] = useState();
 
   const year = ["2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022"];
-  const backend_url = "http://f1flask-env.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
-
+  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
 
   let type = null;
   let options = null;
