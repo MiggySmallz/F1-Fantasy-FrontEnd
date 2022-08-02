@@ -25,7 +25,7 @@ import Tsunoda from '../images/Yuki_Tsunoda.png'
 
 function Fantasy(){
 
-  const backend_url = "http://F1fantasy-env2.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
 
   
   const [budget, setBudget] = useState(100000000);
