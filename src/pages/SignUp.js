@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function SignUp(){
 
-  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  const backend_url = "http://F1fantasy-env2.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
