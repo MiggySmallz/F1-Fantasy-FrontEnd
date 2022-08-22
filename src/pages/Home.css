@@ -1,0 +1,135 @@
+.homepage-header{
+    height: 25%;
+    display: flex;
+}
+
+.title{
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-left: 5%;
+    margin-top: 0.7em;
+}
+
+#join-league-btn{
+    background-color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    border-color: rgb(172, 172, 172);
+    margin: 1.5em 0.7em 0.7em auto;
+}
+
+#create-league-btn{
+    background-color: red;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    border-color: rgb(203, 43, 43);
+    margin: 1.5em 0.7em 0.7em 0.7em;
+}
+
+.leagues-container{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    z-index: 7;
+    top: 10em;
+    position: absolute;
+}
+
+.league-card{
+    height: 20em;
+    width: 30em;
+    background-color: red;
+    border-radius: 15px;
+    margin: 1em;
+}
+
+.league-card:hover{
+    background-color: rgb(168, 0, 0);
+}
+
+#join-league-btn:hover{
+    background-color: rgb(196, 196, 196);
+}
+
+#create-league-btn:hover{
+    background-color: rgb(202, 1, 1);
+}
+
+  /* The popup form - hidden by default */
+  .form-background{
+    display: none;
+    background-color: rgba(128, 128, 128, 0.8);
+    z-index: 8;
+    width: 100vw;
+    height: 90vh;
+  }
+
+  .form-popup {
+    display: none;
+    width: 30%;
+    height: 50%;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-popup h1{
+    text-align: center;
+  }
+
+  .popup-container{
+    position: relative;
+    z-index: 9;
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* Full-width input fields */
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  /* When the inputs get focus, do something */
+  .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/login button */
+  .form-container .btn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: red;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+

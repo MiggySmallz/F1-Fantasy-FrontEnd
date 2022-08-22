@@ -1,5 +1,5 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Stats from './pages/Stats';
@@ -10,7 +10,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(){
   
-  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  const backend_url = "http://localhost:5000"
+  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token'));
   const [userName, setUserName] = useState();
 
@@ -26,7 +27,8 @@ function App(){
     method: 'POST', 
     mode: 'cors',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
     },
     body: JSON.stringify({token:localStorage.getItem('token')}) // body data type must match "Content-Type" header
   })

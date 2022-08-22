@@ -4,7 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 function SignUp(){
 
-  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+
+  const backend_url = "http://localhost:5000"
+  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -23,8 +25,8 @@ function SignUp(){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({firstName:firstName, lastName:lastName, email:email, pass:pass}) // body data type must match "Content-Type" header
-  })
-}
+    })
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -42,26 +44,26 @@ function SignUp(){
       </div> */}
       <div class="box" id="signup">
         <form onSubmit={handleSubmit}>
-          <span class="text-center">Sign Up</span>
-        <div class="input-container">
-          <input onInput={e => setFirstName(e.target.value)} type="text" required/>
-          <label>First Name</label>		
-        </div>
-        <div class="input-container">
-          <input onInput={e => setLastName(e.target.value)} type="text" required/>
-          <label>Last Name</label>		
-        </div>
-        <div class="input-container">		
-          <input onInput={e => setEmail(e.target.value)} type="text" required/>
-          <label>Email</label>
-        </div>
-        <div class="input-container">		
-          <input onInput={e => setPass(e.target.value)} type="password" required/>
-          <label>Password</label>
-        </div>
-          <button type="submit" class="btn">submit</button>
+            <span class="text-center">Sign Up</span>
+            <div class="input-container">
+              <input onInput={e => setFirstName(e.target.value)} type="text" required/>
+              <label>First Name</label>		
+            </div>
+            <div class="input-container">
+              <input onInput={e => setLastName(e.target.value)} type="text" required/>
+              <label>Last Name</label>		
+            </div>
+            <div class="input-container">		
+              <input onInput={e => setEmail(e.target.value)} type="text" required/>
+              <label>Email</label>
+            </div>
+            <div class="input-container">		
+              <input onInput={e => setPass(e.target.value)} type="password" required/>
+              <label>Password</label>
+            </div>
+            <button type="submit" class="btn">submit</button>
           
-      </form>	
+        </form>	
       
       </div>
     </div>

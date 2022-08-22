@@ -25,7 +25,8 @@ import Tsunoda from '../images/Yuki_Tsunoda.png'
 
 function Fantasy(){
 
-  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  const backend_url = "http://localhost:5000"
+  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
 
   
   const [budget, setBudget] = useState(100000000);
@@ -135,10 +136,8 @@ function Fantasy(){
     body: JSON.stringify({token:localStorage.getItem('token')}) // body data type must match "Content-Type" header
   })
   .then(response => response.json())
-  .then(data => {setUsersTeams(data["teamList"]); console.log(usersTeams)})
+  .then(data => setUsersTeams(data["teamList"]))
   }
-
-
 
   useEffect(() => {
    
@@ -147,6 +146,7 @@ function Fantasy(){
     setTeamSaved(false);
   }, [teamSaved])
   
+
   const handleOnClick = () =>{
     if (teamName == ""){
       alert("Team Name is Empty")
@@ -154,14 +154,14 @@ function Fantasy(){
     else{
       saveTeam()
     }
-    
   }
 
   const addToTeamList = (team) => {
-    setTeamList(team)
 
-    setDrivers(driversNoChange)
-    setConstructors(constructorsNoChange)
+    setBudget(team.sort()[team.length - 1]["budget"])
+    setTeamList(team.sort().slice(0,[team.length - 1]))    
+    setDrivers(driversNoChange);
+    setConstructors(constructorsNoChange);
     
     let newDriversList = driversNoChange;
     let newConstructorsList = constructorsNoChange;
@@ -169,34 +169,29 @@ function Fantasy(){
     let newConstructorsListFiltered = [];
     let isConstructor = false
 
-    // console.log(newDriversList.driver)
-    // console.log(newConstructorsList[0].constructor)
 
-    for (let i = 0; i < team.length; i++){
+    // added -1 to length to account for "budget" in list
+    for (let i = 0; i < team.length-1; i++){
       if (team[i]["driver"] != undefined){
-        // console.log(driversListNoChange)
-        // console.log(newDriversList)
         newDriversListFiltered = newDriversList.filter(item => item.driver !== team[i]["driver"])
       }
-      else{
-        // console.log(constructors)
-        // console.log(newConstructorsList)
+      else if(team[i]["constructor"] != undefined){
         newConstructorsListFiltered = newConstructorsList.filter(items => items.constructor !== team[i]["constructor"])
         isConstructor = true
+      }
+      else{
+        console.log(team[i]["budget"])
       }
       newDriversList = newDriversListFiltered
     }
     newConstructorsList = newConstructorsListFiltered
     
     if (isConstructor == true){
+      console.log(newConstructorsList)
       setConstructors(newConstructorsList)
     }
 
     setDrivers(newDriversList)
-    
-
-    
-
   }
 
   return (
@@ -255,10 +250,10 @@ function Fantasy(){
         </div>
         <div className='break-column'></div>
         <div className='teamList'>
-        <div className="selectorButtons">
-          <button id={driverBtn} className="selectorButton" onClick={() => {setDriverBtn((driverBtn) => (driverBtn === "btnOff" ? "btnOn" : "btnOff")); setConstructorBtn((constructorBtn) => (constructorBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Drivers</button>
-          <button id={constructorBtn} className="selectorButton" onClick={() => {setConstructorBtn((constructorBtn) => (constructorBtn === "btnOff" ? "btnOn" : "btnOff")); setDriverBtn((driverBtn) => (driverBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Constructors</button>
-        </div>
+          <div className="selectorButtons">
+            <button id={driverBtn} className="selectorButton" onClick={() => {setDriverBtn((driverBtn) => (driverBtn === "btnOff" ? "btnOn" : "btnOff")); setConstructorBtn((constructorBtn) => (constructorBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Drivers</button>
+            <button id={constructorBtn} className="selectorButton" onClick={() => {setConstructorBtn((constructorBtn) => (constructorBtn === "btnOff" ? "btnOn" : "btnOff")); setDriverBtn((driverBtn) => (driverBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Constructors</button>
+          </div>
             
             { (driverBtn === "btnOn")?
             (drivers.sort((a, b) => a.cost < b.cost ? 1 : -1).map((item) =>{

@@ -9,7 +9,9 @@ import "./SigningForm.css"
 // function LogIn({ setToken }){
 function LogIn(){
   let navigate = useNavigate();
-  const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+
+  const backend_url = "http://localhost:5000"
+  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
