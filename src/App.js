@@ -2,10 +2,11 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Leagues from './pages/Leagues';
 import Stats from './pages/Stats';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
-import Fantasy from './pages/Fantasy';
+import TeamBuilder from './pages/TeamBuilder';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(){
@@ -46,11 +47,13 @@ function App(){
         <Navbar loggedIn={userName} />
               <Routes>
                 <Route exact path="/" element ={<Home />} />
-                <Route path ="/Home" element ={<Home />} />
+                <Route exact path="/Home" element ={<Home />} />
+                <Route path ="/Leagues" element ={<Leagues />} />
+                <Route path ="/Leagues/:id" element ={<Leagues />} />
                 <Route path ="/Stats" element ={<Stats />} />
                 <Route path ="/SignUp" element ={<SignUp />} />
                 <Route path ="/LogIn" element ={<LogIn />} />
-                <Route path ="/Fantasy" element ={<Fantasy />} />
+                <Route path ="/TeamBuilder" element ={<TeamBuilder />} />
               </Routes>
         </div>
       </div>

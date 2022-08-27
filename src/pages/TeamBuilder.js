@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {ProgressBar} from "react-bootstrap"
 // import { StyleSheet, Text, View, TextInput} from 'react-native'
-import "./Fantasy.css"
+import "./TeamBuilder.css"
 import Hamilton from '../images/Lewis_Hamilton.png'
 import Albon from '../images/Alexander_Albon.png'
 import Sainz from '../images/Carlos_Sainz.png'
@@ -23,7 +23,7 @@ import Perez from '../images/Sergio_Perez.png'
 import Bottas from '../images/Valtteri_Bottas.png'
 import Tsunoda from '../images/Yuki_Tsunoda.png'
 
-function Fantasy(){
+function TeamBuilder(){
 
   const backend_url = "http://localhost:5000"
   // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
@@ -195,7 +195,7 @@ function Fantasy(){
   }
 
   return (
-    <div className="container-fantasy">
+    <div className="container-TeamBuilder">
       <div className="teams">
         <p className="teamTitle">
           Team
@@ -307,4 +307,4 @@ function Fantasy(){
 }
 
 
-export default Fantasy
+export default TeamBuilder
