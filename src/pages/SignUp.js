@@ -61,7 +61,7 @@ function SignUp(){
               <input onInput={e => setPass(e.target.value)} type="password" required/>
               <label>Password</label>
             </div>
-            <button type="submit" class="btn">submit</button>
+            <button type="submit" class="btn">Submit</button>
           
         </form>	
       

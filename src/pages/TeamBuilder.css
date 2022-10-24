@@ -24,9 +24,43 @@
     width: auto;
     flex-wrap: wrap;
     background-color: rgb(41, 41, 49);
-    height: 100vh;
+    height: 94vh;
     float: right;
     width: 65%;
+}
+
+.team-list-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 80vh;
+    overflow-y: scroll;
+    
+}
+
+.team-item-container{
+    background-color: rgb(62, 62, 73);
+    margin: 20px 20px 0px 20px;
+    min-height: 5em;
+    width: 60%;
+    display: flex; 
+    align-items: center;
+}
+
+.teamDelete{
+    background-color: rgb(200, 64, 64);
+    color: white;
+    font-weight: bold;
+    height: 5em;
+    width: 25%;
+    margin-left: auto;
+
+}
+
+.teamName{
+    font-size: 18px;
+    margin-left: 20px;
+    margin-bottom: 0;
 }
 
 .item-container{
@@ -37,8 +71,23 @@
     display: flex; 
 }
 
+/* .team-item-container:hover{
+    background-color: rgb(92, 92, 106);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
 .item-container:hover{
     background-color: rgb(92, 92, 106);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.item-container:hover{
+    background-color: rgb(92, 92, 106);
+    background-color: rgba(255, 255, 255, 0.2);
+} */
+
+.highlight:hover{
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .driverTitle{
@@ -75,13 +124,14 @@
 .teamList{
     width: 25em;
     /* height: 40em; */
-    max-height: 90vh;
+    max-height: 80vh;
     overflow-y: scroll;
     background-color: rgb(41, 41, 49);
 }
 
 .teamNameInput{
     text-align: center;
+    min-height: 5em;
 }
 
 .progressBar{
@@ -95,11 +145,12 @@
 }
 
 .budget{
-    margin-top: 1em;
+    /* margin-top: 1em; */
     display: flex;
     color: white;
     align-items: center;
     width: 80%;
+    min-height: 4em;
 }
 
 
@@ -110,10 +161,14 @@
 }
 
 .saveTeamButton{
-    margin-bottom: 1em;
+    width: 10em;
+    height: 2.5em;
+    align-self: center;
+    margin: 1em 1em 0em;
+    border-radius: 5px;
 }
 
-.selectorButton, .saveTeamButton{
+.selectorButton{
     width: 10em;
     height: 2.5em;
     align-self: center;
@@ -126,7 +181,7 @@
 }
 
 .saveTeamButton:hover{
-    background-color: rgb(87, 94, 109);
+    background-color: rgb(187, 191, 198);
 }
 
 #btnOn{
@@ -139,12 +194,16 @@
 
 .selectorButtons{
     text-align: center;
+    min-height: 5em;
 }
 
 .teamTitle{
-    margin-top: 1em;
+    display: flex;
+    /* margin-top: 1em; */
     color: white;
     align-items: center;
+    justify-content: center;
+    min-height: 4em;
 }
 
 ::-webkit-scrollbar {
@@ -160,4 +219,5 @@
 ::-webkit-input-placeholder {
     text-align: center;
 }
+
 

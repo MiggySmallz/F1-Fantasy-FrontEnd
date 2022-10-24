@@ -43,15 +43,16 @@
 }
 
 .league-card{
-    height: 20em;
-    width: 30em;
-    background-color: red;
-    border-radius: 15px;
-    margin: 1em;
+  color: white;
+  height: 20em;
+  width: 30em;
+  background-color: rgb(52, 52, 108);
+  border-radius: 15px;
+  margin: 1em;
 }
 
 .league-card:hover{
-    background-color: rgb(168, 0, 0);
+    background-color: rgba(52, 52, 108, 0.674);
 }
 
 #join-league-btn:hover{

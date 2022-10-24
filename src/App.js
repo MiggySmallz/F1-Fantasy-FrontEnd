@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Leagues from './pages/Leagues';
+import LeaguesPage from './pages/LeaguePage';
 import Stats from './pages/Stats';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
@@ -49,7 +50,7 @@ function App(){
                 <Route exact path="/" element ={<Home />} />
                 <Route exact path="/Home" element ={<Home />} />
                 <Route path ="/Leagues" element ={<Leagues />} />
-                <Route path ="/Leagues/:id" element ={<Leagues />} />
+                <Route path ="/Leagues/:id" element ={<LeaguesPage />} />
                 <Route path ="/Stats" element ={<Stats />} />
                 <Route path ="/SignUp" element ={<SignUp />} />
                 <Route path ="/LogIn" element ={<LogIn />} />

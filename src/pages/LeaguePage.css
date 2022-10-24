@@ -1,0 +1,54 @@
+.driverCard{
+  display: flex;
+  object-fit: contain;
+  height: 7em;
+  /* max-width: 14em; */
+  margin-top: 1.5em;
+  align-items: center;
+  margin-left: 1em;
+}
+
+.fontWhite{
+  color: white;
+}
+
+.driverIcon{
+  object-fit: contain;
+  height: 6em;
+  max-width: 14em;
+}
+
+.background{
+  background-color: rgb(41, 41, 49);
+  height: 100vh;
+}
+
+.leagueTitle{
+  padding-top: 1em;
+  padding-bottom: 1em;
+  text-align: center;
+  color: white;
+}
+
+.main-view{
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  height: 80vh;
+}
+
+.memberNameList{
+  padding-top: 1em;
+  font-size: 2em;
+  width: 20%;
+  color: white;
+  text-align: center;
+  background-color: blueviolet;
+}
+
+.memberTeam{
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  background-color: rgb(43, 67, 226);
+}

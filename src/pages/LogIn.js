@@ -62,12 +62,8 @@ function LogIn(){
   
 
   return (
-    <div className="background">
-      {/* <div className="sign-up-container">
-        <h1>Sign Up</h1>
-        <input className="input"></input>
-        <input className="input"></input>
-      </div> */}
+    // <div className="background">
+    <div>
       <div class="box" id="login">
         <form onSubmit={handleSubmit}>
           <span class="text-center">Log In</span>

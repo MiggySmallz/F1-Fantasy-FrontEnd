@@ -5,9 +5,9 @@ import { useNavigate, Link } from "react-router-dom";
 function Leagues(){
 
   const backend_url = "http://localhost:5000"
-  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  // const backend_url = "f1-fantasy-backend.us-east-2.elasticbeanstalk.com"
   const [leagueName, setLeagueName] = useState("")
-  const [leaguePass, setLeaguePass] = useState("")
+  const [leagueCode, setLeagueCode] = useState("")
   const [leaguesList, setLeaguesList] = useState([])
   let navigate = useNavigate();
 
@@ -43,7 +43,7 @@ function Leagues(){
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({leagueName:leagueName, leaguePass:leaguePass, token: localStorage.getItem('token')}) // body data type must match "Content-Type" header
+    body: JSON.stringify({leagueName:leagueName, leaguePass:leagueCode, token: localStorage.getItem('token')}) // body data type must match "Content-Type" header
     })
     getUsersLeagues()
   }
@@ -55,7 +55,7 @@ function Leagues(){
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({leaguePass:leaguePass, token: localStorage.getItem('token')}) // body data type must match "Content-Type" header
+    body: JSON.stringify({leaguePass:leagueCode, token: localStorage.getItem('token')}) // body data type must match "Content-Type" header
     })
     getUsersLeagues()
   }
@@ -79,16 +79,20 @@ function Leagues(){
   // }
 
   async function leaveLeague(e) {
+    
+    e.stopPropagation()
+    console.log(e.target.value)
     const response = await fetch(backend_url + "/leaveLeague", {
     method: 'POST', 
     mode: 'cors',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({league:e.target.value, token:localStorage.getItem('token')})
+    body: JSON.stringify({leagueID:e.target.value, token:localStorage.getItem('token')})
   })
   // .then(response => response.json())
   // .then(data => setLeaguesList(data["leaguesList"]))
+  
   getUsersLeagues()
   }
 
@@ -125,6 +129,7 @@ function Leagues(){
           leaguesList.map(function(key, index) {
             return(
               <div onClick={()=>leagueLink(key)} className="league-card">
+                {console.log(key)}
                 <h3>{key["leagueName"]}</h3>
                 <button onClick={e => leaveLeague(e, "value")} value={key["leagueID"]}>Leave League</button>
               </div>
@@ -146,8 +151,8 @@ function Leagues(){
             <label><b>League Name</b></label>
             <input onInput={e => setLeagueName(e.target.value)} type="text" placeholder='Enter "League Name"'required></input>
 
-            <label><b>Password</b></label>
-            <input onInput={e => setLeaguePass(e.target.value)} type="text" placeholder="Enter Password" required></input>
+            <label><b>League Code</b></label>
+            <input onInput={e => setLeagueCode(e.target.value)} type="text" placeholder='Enter "League Code"' required></input>
 
             <button type="submit" class="btn">Login</button>
             <button onClick={()=>closePopup()} type="button" class="btn cancel">Close</button>
@@ -159,7 +164,7 @@ function Leagues(){
             <h1>Join League</h1>
 
             <label><b>League Code</b></label>
-            <input onInput={e => setLeaguePass(e.target.value)} type="text" placeholder='Enter "League Code"'required></input>
+            <input onInput={e => setLeagueCode(e.target.value)} type="text" placeholder='Enter "League Code"'required></input>
 
             <button type="submit" class="btn">Login</button>
             <button onClick={()=>closePopup()} type="button" class="btn cancel">Close</button>

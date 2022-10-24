@@ -25,8 +25,8 @@ import Tsunoda from '../images/Yuki_Tsunoda.png'
 
 function TeamBuilder(){
 
-  const backend_url = "http://localhost:5000"
-  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  // const backend_url = "http://localhost:5000"
+  const backend_url = "f1-fantasy-backend.us-east-2.elasticbeanstalk.com"
 
   
   const [budget, setBudget] = useState(100000000);
@@ -105,8 +105,19 @@ function TeamBuilder(){
     body: JSON.stringify({team:teamList, budget:budget, token:localStorage.getItem('token'), teamName: teamName}) // body data type must match "Content-Type" header
   })
   .then(response => {response.json(); setTeamSaved(true)})
-  // .then(data => setTeamList(data))
-  // console.log(teamList)
+  getUsersTeams();
+  }
+
+  async function deleteTeam(e) {
+    // console.log(e)
+    const response = await fetch(backend_url + "/deleteTeam", {
+    method: 'POST', 
+    mode: 'cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({teamName:e, token:localStorage.getItem('token')}) // body data type must match "Content-Type" header
+  })
+  // .then(response => response.json())
+  getUsersTeams();
   }
 
 
@@ -144,8 +155,10 @@ function TeamBuilder(){
     getDrivers();
     getUsersTeams();
     setTeamSaved(false);
-  }, [teamSaved])
+  // }, [teamSaved])
+  }, [])
   
+
 
   const handleOnClick = () =>{
     if (teamName == ""){
@@ -168,7 +181,6 @@ function TeamBuilder(){
     let newDriversListFiltered = [];
     let newConstructorsListFiltered = [];
     let isConstructor = false
-
 
     // added -1 to length to account for "budget" in list
     for (let i = 0; i < team.length-1; i++){
@@ -197,14 +209,17 @@ function TeamBuilder(){
   return (
     <div className="container-TeamBuilder">
       <div className="teams">
-        <p className="teamTitle">
+        <div className="teamTitle">
           Team
-        </p>
-        <div>
+        </div>
+        <div className="team-list-container">
           {
             Object.keys(usersTeams).map(function(key, index) {
               return(
-                <div onClick={() => addToTeamList(usersTeams[key])} className='item-container'>{key}</div>
+                <div onClick={() => addToTeamList(usersTeams[key])} className='team-item-container highlight'>
+                  <p className="teamName">{key}</p>
+                  <button className="teamDelete" value={key} onClick={e => deleteTeam(e.target.value)}>Delete</button>
+                </div>
               )
             })
           }
@@ -216,12 +231,12 @@ function TeamBuilder(){
         <div className='teamList'>
             <div className="teamNameInput">
               <input onChange={e => setTeamName(e.target.value)} placeholder="Enter team name:"></input>
-              <button  onClick={() => handleOnClick()} >Save Team</button>
+              <button className="saveTeamButton" onClick={() => handleOnClick()} >Save Team</button>
             </div>
             { teamList.sort((a, b) => a.id > b.id ? 1 : -1).map((item) =>{
               if (item.driver != null){
                 return(
-                  <div onClick={() => removeDriver(item)} className='item-container'>
+                  <div onClick={() => removeDriver(item)} className='item-container highlight'>
                     <img className='driverImg' src={item.driverImg} width="500" height="600"></img>
                     <div className='driverTitle'>
                       {item.driver}
@@ -234,7 +249,7 @@ function TeamBuilder(){
               }
               else{
                 return(
-                  <div onClick={() => removeConstructor(item)} className='item-container'>
+                  <div onClick={() => removeConstructor(item)} className='item-container highlight'>
                     <img className='constructorImg' src={item.constructorImg} width="500" height="600"></img>
                     <div className='driverTitle'>
                       {item.constructor}
@@ -259,7 +274,7 @@ function TeamBuilder(){
             (drivers.sort((a, b) => a.cost < b.cost ? 1 : -1).map((item) =>{
 
               return(
-                <div onClick={() => addDriver(item)} className='item-container'>
+                <div onClick={() => addDriver(item)} className='item-container highlight'>
                   
                   <img className='driverImg' src={item.driverImg} width="500" height="600"></img>
                   
@@ -277,7 +292,7 @@ function TeamBuilder(){
             :
             (constructors.sort((a, b) => a.cost < b.cost ? 1 : -1).map((item) =>{
               return(
-                <div onClick={() => {addConstructor(item); console.log(item)}} className='item-container'>
+                <div onClick={() => {addConstructor(item); console.log(item)}} className='item-container highlight'>
                   
                   <img className='constructorImg' src={item.constructorImg} width="500" height="600"></img>
                   
@@ -297,13 +312,7 @@ function TeamBuilder(){
         
       </div>
     </div>
-    
-    
-    
   );
-
-  
-
 }
 
 
