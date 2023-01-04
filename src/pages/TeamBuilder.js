@@ -2,31 +2,11 @@ import React, {useState, useEffect, useRef} from 'react'
 import {ProgressBar} from "react-bootstrap"
 // import { StyleSheet, Text, View, TextInput} from 'react-native'
 import "./TeamBuilder.css"
-import Hamilton from '../images/Lewis_Hamilton.png'
-import Albon from '../images/Alexander_Albon.png'
-import Sainz from '../images/Carlos_Sainz.png'
-import Leclerc from '../images/Charles_Leclerc.png'
-import Ricciardo from '../images/Daniel_Ricciardo.png'
-import Ocon from '../images/Esteban_Ocon.png'
-import Alonso from '../images/Fernado_Alonso.png'
-import Russell from '../images/George_Russell.png'
-import Zhou from '../images/Guanyu_Zhou.png'
-import Magnussen from '../images/Kevin_Magnussen.png'
-import Stroll from '../images/Lance_Stroll.png'
-import Norris from '../images/Lando_Norris.png'
-import Verstappen from '../images/Max_Verstappen.png'
-import Schumacher from '../images/Mick_Schumacher.png'
-import Latifi from '../images/Nicholas_Latifi.png'
-import Gasly from '../images/Pierre_Gasly.png'
-import Vettel from '../images/Sebastian_Vettel.png'
-import Perez from '../images/Sergio_Perez.png'
-import Bottas from '../images/Valtteri_Bottas.png'
-import Tsunoda from '../images/Yuki_Tsunoda.png'
 
 function TeamBuilder(){
 
-  // const backend_url = "http://localhost:5000"
-  const backend_url = "f1-fantasy-backend.us-east-2.elasticbeanstalk.com"
+  const backend_url = "http://localhost:5000"
+  // const backend_url = "f1-fantasy-backend.us-east-2.elasticbeanstalk.com"
 
   
   const [budget, setBudget] = useState(100000000);
@@ -199,7 +179,7 @@ function TeamBuilder(){
     newConstructorsList = newConstructorsListFiltered
     
     if (isConstructor == true){
-      console.log(newConstructorsList)
+      // console.log(newConstructorsList)
       setConstructors(newConstructorsList)
     }
 
@@ -207,7 +187,7 @@ function TeamBuilder(){
   }
 
   return (
-    <div className="container-TeamBuilder">
+    <div className="container-TeamBuilder white">
       <div className="teams">
         <div className="teamTitle">
           Team
@@ -216,9 +196,9 @@ function TeamBuilder(){
           {
             Object.keys(usersTeams).map(function(key, index) {
               return(
-                <div onClick={() => addToTeamList(usersTeams[key])} className='team-item-container highlight'>
+                <div onClick={() => {addToTeamList(usersTeams[key]); console.log(usersTeams)}} className='team-item-container highlight'>
                   <p className="teamName">{key}</p>
-                  <button className="teamDelete" value={key} onClick={e => deleteTeam(e.target.value)}>Delete</button>
+                  <button className="teamDelete white" value={key} onClick={e => deleteTeam(e.target.value)}>Delete</button>
                 </div>
               )
             })
@@ -264,11 +244,12 @@ function TeamBuilder(){
 
         </div>
         <div className='break-column'></div>
+        <div className="selectorButtons">
+            <button id={driverBtn} className="selectorButton white" onClick={() => {setDriverBtn((driverBtn) => (driverBtn === "btnOff" ? "btnOn" : "btnOff")); setConstructorBtn((constructorBtn) => (constructorBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Drivers</button>
+            <button id={constructorBtn} className="selectorButton white" onClick={() => {setConstructorBtn((constructorBtn) => (constructorBtn === "btnOff" ? "btnOn" : "btnOff")); setDriverBtn((driverBtn) => (driverBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Constructors</button>
+          
         <div className='teamList'>
-          <div className="selectorButtons">
-            <button id={driverBtn} className="selectorButton" onClick={() => {setDriverBtn((driverBtn) => (driverBtn === "btnOff" ? "btnOn" : "btnOff")); setConstructorBtn((constructorBtn) => (constructorBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Drivers</button>
-            <button id={constructorBtn} className="selectorButton" onClick={() => {setConstructorBtn((constructorBtn) => (constructorBtn === "btnOff" ? "btnOn" : "btnOff")); setDriverBtn((driverBtn) => (driverBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Constructors</button>
-          </div>
+          
             
             { (driverBtn === "btnOn")?
             (drivers.sort((a, b) => a.cost < b.cost ? 1 : -1).map((item) =>{
@@ -308,6 +289,7 @@ function TeamBuilder(){
               )
             }))
             }
+        </div>
         </div>
         
       </div>

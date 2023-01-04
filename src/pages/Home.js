@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef} from 'react'
+import "./Home.css"
 
 function Home(){
 
@@ -21,14 +22,14 @@ function Home(){
 
   async function getApi(){
 // -------------------------------------Commented out just for less api use ------------------------------ //
-  //   await fetch(backend_url + "/drivers").then(
-  //     res => res.json()
-  //   ).then(
-  //     data => {
-  //       setData(data)
-  //       console.log(data.result[0])
-  //     }
-  //   )
+    await fetch(backend_url + "/drivers").then(
+      res => res.json()
+    ).then(
+      data => {
+        setData(data)
+        console.log(data.result[0])
+      }
+    )
 // -------------------------------------Commented out just for less api use ------------------------------ //
   }
 
@@ -36,37 +37,48 @@ function Home(){
   return(
     <div>
       
-      {(typeof data.result === 'undefined') ? (
+      {/* {(typeof data.result === 'undefined') ? (
         <p>Loading...</p>
       ) : (
 
-        Object.entries(data.result[0].Abbreviation)
-        .map( ([key, value]) => `My key is ${key} and my value is ${value}` )
-      )}
+        // Object.entries(data.result[0].Abbreviation)
+        // .map( ([key, value]) => `My key is ${key} and my value is ${value}` )
+        data.result.map(key => key)
+      )} */}
 
       
       <div>
-        <table className="table table-bordered" id="shopping-cart">
+        <table className="table table-bordered standings-table">
           <thead>
             <tr>
+              <th><b>Position</b></th>
               <th><b>Driver</b></th>
-              <th><b>Abbreviation</b></th>
-              <th><b>#</b></th>
+              <th><b>Team</b></th>
+              <th><b>Points</b></th>
             </tr>
           </thead>
           <tbody>
             {(typeof data.result === 'undefined') ? (
-              <p>Loading...</p>
+              <p className="white">Loading...</p>
             ) : (
-
-
-              Object.entries(data.result[0].FullName).map(([key, value1]) => {
+              // Object.entries(data.result[0].FullName).map(([key, value1]) => {
+                
+              //   return (
+              //       <tr>
+              //           <td>{value1}</td>
+              //           <td>{data.result[0].Abbreviation[key]}</td>
+              //           <td>{data.result[0].DriverNumber[key]}</td>
+              //       </tr>
+              //   )
+              // })
+              data.result.map(key => {
                 
                 return (
                     <tr>
-                        <td>{value1}</td>
-                        <td>{data.result[0].Abbreviation[key]}</td>
-                        <td>{data.result[0].DriverNumber[key]}</td>
+                        <td>{key[0]}</td>
+                        <td>{key[1]}</td>
+                        <td>{key[2]}</td>
+                        <td>{key[3]}</td>
                     </tr>
                 )
               })

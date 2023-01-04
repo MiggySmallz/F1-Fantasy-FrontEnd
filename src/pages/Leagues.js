@@ -118,7 +118,7 @@ function Leagues(){
     <div>
 
       <div className="leagues-header">
-        <p className="title">My Leagues</p>
+        <p className="title white">My Leagues</p>
         <button onClick={()=>joinLeaguePopup()} id="join-league-btn">Join with Code ></button>
         <button onClick={()=>createLeaguePopup()} id="create-league-btn">Create a League ></button>
       </div>
@@ -128,7 +128,7 @@ function Leagues(){
         {
           leaguesList.map(function(key, index) {
             return(
-              <div onClick={()=>leagueLink(key)} className="league-card">
+              <div onClick={()=>leagueLink(key)} className="league-card white">
                 {console.log(key)}
                 <h3>{key["leagueName"]}</h3>
                 <button onClick={e => leaveLeague(e, "value")} value={key["leagueID"]}>Leave League</button>

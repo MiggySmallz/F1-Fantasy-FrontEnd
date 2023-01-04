@@ -4,14 +4,13 @@
     width: auto;
     flex-wrap: wrap;
     flex-direction: row;
-    background-color: rgb(41, 41, 49);
-    /* height: 100vh; */
-    color: white;
+    /* background-color: rgb(41, 41, 49); */
+    /* color: white; */
 }
 
 .teams{
     display: inline-block;
-    width: 35%;
+    width: 30%;
     text-align: center;
 
 }
@@ -23,7 +22,7 @@
     justify-content: center;
     width: auto;
     flex-wrap: wrap;
-    background-color: rgb(41, 41, 49);
+    /* background-color: rgb(41, 41, 49); */
     height: 94vh;
     float: right;
     width: 65%;
@@ -49,7 +48,7 @@
 
 .teamDelete{
     background-color: rgb(200, 64, 64);
-    color: white;
+    /* color: white; */
     font-weight: bold;
     height: 5em;
     width: 25%;
@@ -93,7 +92,7 @@
 .driverTitle{
     font-size: 18px;
     margin-left: 0.4em;
-    color: white;
+    /* color: white; */
     min-width: 55%;
 }
 
@@ -124,14 +123,14 @@
 .teamList{
     width: 25em;
     /* height: 40em; */
-    max-height: 80vh;
+    max-height: 75vh;
     overflow-y: scroll;
-    background-color: rgb(41, 41, 49);
+    /* background-color: rgb(41, 41, 49); */
 }
 
 .teamNameInput{
     text-align: center;
-    min-height: 5em;
+    min-height: 4.5em;
 }
 
 .progressBar{
@@ -147,7 +146,7 @@
 .budget{
     /* margin-top: 1em; */
     display: flex;
-    color: white;
+    /* color: white; */
     align-items: center;
     width: 80%;
     min-height: 4em;
@@ -175,7 +174,7 @@
     margin: 1em 1em 0em;
     border-radius: 5px;
     background-color: rgb(71, 78, 95);
-    color: white;
+    /* color: white; */
     border-color: rgb(71, 78, 95);
     margin-bottom: 1em;
 }
@@ -200,7 +199,7 @@
 .teamTitle{
     display: flex;
     /* margin-top: 1em; */
-    color: white;
+    /* color: white; */
     align-items: center;
     justify-content: center;
     min-height: 4em;

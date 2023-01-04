@@ -8,18 +8,15 @@
   margin-left: 1em;
 }
 
-.fontWhite{
-  color: white;
-}
-
 .driverIcon{
   object-fit: contain;
   height: 6em;
-  max-width: 14em;
+  width: 12em;
+  /* margin-right: 5em; */
 }
 
 .background{
-  background-color: rgb(41, 41, 49);
+  /* background-color: rgb(41, 41, 49); */
   height: 100vh;
 }
 
@@ -27,28 +24,76 @@
   padding-top: 1em;
   padding-bottom: 1em;
   text-align: center;
-  color: white;
+  /* color: white; */
 }
 
 .main-view{
   display: flex;
   flex-direction: row-reverse;
   justify-content: center;
-  height: 80vh;
+  height: 85vh;
 }
 
 .memberNameList{
   padding-top: 1em;
-  font-size: 2em;
   width: 20%;
-  color: white;
+  background-color: rgb(146, 123, 168);
   text-align: center;
-  background-color: blueviolet;
+}
+
+.memberName{
+  margin-bottom: .6em;
+  font-size: 1.5em;
+  /* color: white; */
+  text-align: center;
+}
+
+.memberName:hover{
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.357);
 }
 
 .memberTeam{
   display: flex;
   flex-direction: column;
-  width: 65%;
-  background-color: rgb(43, 67, 226);
+  width: 40%;
+  background-color: rgb(52, 56, 83);
+  align-items: center;
 }
+
+.raceList{
+  margin-left: 20%;
+  font-size: 1.5rem; 
+  max-height: 500px;
+}
+
+.driverCard > *{
+  margin-right: 4em;
+}
+
+.memberTeam-table{
+  border-collapse: separate;
+  /* color: white; */
+  text-align: center;
+  border-radius: 5px;
+  border: transparent;
+  width: 40vw;
+  font-family: Arial, Helvetica, sans-serif;
+  border-spacing: 4em 1.5em;
+}
+
+.memberTeam-table > thead{
+  font-weight: bold
+}
+
+.green{
+  color: green;
+  font-weight: bold;
+}
+
+.red{
+  color: red;
+  font-weight: bold;
+}
+
+
