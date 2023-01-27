@@ -22,7 +22,7 @@ class Navigation extends React.Component {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="/Home">Home</Nav.Link>
+                    <Nav.Link href="/Home">Homesssss</Nav.Link>
                     <Nav.Link href="/Leagues">Leagues</Nav.Link>
                     <Nav.Link href="/TeamBuilder">Team Builder</Nav.Link>
                     <Nav.Link href="/Stats">Stats</Nav.Link> 
