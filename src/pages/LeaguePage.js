@@ -5,7 +5,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 function LeaguesPage() {
 
   let { id } = useParams();
-  const backend_url = "http://localhost:5000"
+  const backend_url = "https://api.playf1fantasy.com"
   const [memberTeamsList,setMemberTeamsList] = useState({})
   const [points,setPoints] = useState({})
   const [costs,setCosts] = useState({})

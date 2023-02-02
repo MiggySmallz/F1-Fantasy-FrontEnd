@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 function Leagues(){
 
-  const backend_url = "http://localhost:5000"
+  const backend_url = "https://api.playf1fantasy.com"
   // const backend_url = "f1-fantasy-backend.us-east-2.elasticbeanstalk.com"
   const [leagueName, setLeagueName] = useState("")
   const [leagueCode, setLeagueCode] = useState("")
