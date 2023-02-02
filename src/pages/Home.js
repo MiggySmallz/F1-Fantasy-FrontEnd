@@ -3,8 +3,8 @@ import "./Home.css"
 
 function Home(){
 
-  // const backend_url = "http://localhost:5000"
-  const backend_url = "http://F1fantasyapi-env.eba-w3fistyc.us-east-2.elasticbeanstalk.com"
+  const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "http://f1fantasyapi-env.eba-w3fistyc.us-east-2.elasticbeanstalk.com"
   const [data, setData] = useState("")
   const didMount = useRef(false);
   // const [img, setImg] = useState();
