@@ -10,8 +10,8 @@ import "./SigningForm.css"
 function LogIn(){
   let navigate = useNavigate();
 
-  const backend_url = "https://api.playf1fantasy.com"
-  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  // const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "http://127.0.0.1:5000"
 
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -25,7 +25,7 @@ function LogIn(){
   // }, [navigate])
 
   async function sendLogIn() {
-    return fetch(backend_url + "/logIn", {
+    return fetch(process.env.REACT_APP_BACKEND_URL + "/logIn", {
       method: 'POST', 
       mode: 'cors',
       headers: {

@@ -3,7 +3,7 @@ import "./Home.css"
 
 function Home(){
 
-  const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "https://api.playf1fantasy.com"
   // const backend_url = "http://f1fantasyapi-env.eba-w3fistyc.us-east-2.elasticbeanstalk.com"
   const [data, setData] = useState("")
   const didMount = useRef(false);
@@ -22,7 +22,7 @@ function Home(){
 
   async function getApi(){
 // -------------------------------------Commented out just for less api use ------------------------------ //
-    await fetch(backend_url + "/drivers").then(
+    await fetch(process.env.REACT_APP_BACKEND_URL + "/drivers").then(
       res => res.json()
     ).then(
       data => {

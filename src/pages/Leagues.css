@@ -44,15 +44,39 @@
 
 .league-card{
   /* color: white; */
+  position: relative;
   height: 20em;
   width: 30em;
-  background-color: rgb(52, 52, 108);
+  background-image: url("../images/team_card.jpg");
+  background-size: 100% 100%;
+  background-position: 0 2em;
   border-radius: 15px;
   margin: 1em;
+  z-index: 1;
+}
+
+.league-card > div {
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  height: 2.5em;
+  border-radius: 15px 15px 0 0;
+}
+
+.league-card > button {
+  position: relative;
+  top: 14.5em;
+  left: 22.73em;
+  height: 3em;
+  border-radius: 15px 0 15px 0;
+  background-color: rgba(255, 0, 0, 0.612);
+  color: white;
+  font-weight: bold;
+  border-width: 2px;
+  z-index: 2;
 }
 
 .league-card:hover{
-    background-color: rgba(52, 52, 108, 0.674);
+    cursor: pointer;
 }
 
 #join-league-btn:hover{
@@ -61,6 +85,10 @@
 
 #create-league-btn:hover{
     background-color: rgb(202, 1, 1);
+}
+
+.league-card > button:hover{
+  background-color: rgba(255, 0, 0, 0.928);
 }
 
   /* The popup form - hidden by default */

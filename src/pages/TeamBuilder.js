@@ -5,7 +5,7 @@ import "./TeamBuilder.css"
 
 function TeamBuilder(){
 
-  const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "https://api.playf1fantasy.com"
   // const backend_url = "f1-fantasy-backend.us-east-2.elasticbeanstalk.com"
 
   
@@ -21,7 +21,7 @@ function TeamBuilder(){
   const [teamName, setTeamName] = useState("")
   const[teamSaved, setTeamSaved] = useState(1)
   const[usersTeams, setUsersTeams] = useState([])
-
+  const[userTeamsFound, setUserTeamsFound] = useState(false)
   const currentBudget = budget / 100000000*100;
 
   function convertBudget(value)
@@ -75,7 +75,7 @@ function TeamBuilder(){
 
   async function saveTeam() {
     console.log(teamList)
-    const response = await fetch(backend_url + "/saveTeam", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/saveTeam", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -90,7 +90,7 @@ function TeamBuilder(){
 
   async function deleteTeam(e) {
     // console.log(e)
-    const response = await fetch(backend_url + "/deleteTeam", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/deleteTeam", {
     method: 'POST', 
     mode: 'cors',
     headers: {'Content-Type': 'application/json'},
@@ -102,7 +102,7 @@ function TeamBuilder(){
 
 
   async function getDrivers() {
-    const response = await fetch(backend_url + "/driversInfo", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/driversInfo", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -117,7 +117,7 @@ function TeamBuilder(){
   }
 
   async function getUsersTeams() {
-    const response = await fetch(backend_url + "/getUsersTeams", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getUsersTeams", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -127,7 +127,12 @@ function TeamBuilder(){
     body: JSON.stringify({token:localStorage.getItem('token')}) // body data type must match "Content-Type" header
   })
   .then(response => response.json())
-  .then(data => setUsersTeams(data["teamList"]))
+  .then(data => {
+    if (data["teamList"] != null){
+      setUsersTeams(data["teamList"])
+      setUserTeamsFound(true)
+    }
+  })
   }
 
   useEffect(() => {
@@ -190,9 +195,10 @@ function TeamBuilder(){
     <div className="container-TeamBuilder white">
       <div className="teams">
         <div className="teamTitle">
-          Team
+          My Teams
         </div>
         <div className="team-list-container">
+          {(userTeamsFound == false) ? (<h3 className='white'>No Teams Found</h3>):(<h3></h3>)}
           {
             Object.keys(usersTeams).map(function(key, index) {
               return(

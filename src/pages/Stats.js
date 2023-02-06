@@ -15,7 +15,7 @@ function Stats(){
 
   const year = ['2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'];
 
-  const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "https://api.playf1fantasy.com"
   // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
 
   let type = null;
@@ -54,7 +54,7 @@ function Stats(){
   };
 
   async function postData(year) {
-      const response = await fetch(backend_url + "/sendYear", {
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/sendYear", {
       method: 'POST', 
       mode: 'cors',
       headers: {
@@ -69,14 +69,14 @@ function Stats(){
   }
 
   async function getPic(){
-    const response = await fetch(backend_url + "/get_image");
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/get_image");
     const imageBlob = await response.blob();
     const imageObjectURL = URL.createObjectURL(imageBlob);
     setImg(imageObjectURL);
   }
 
   async function getRaceResult(year,race) {
-    const response = await fetch(backend_url + "/getRaceResults", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getRaceResults", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -91,7 +91,7 @@ function Stats(){
   }
 
   async function getQualiResult(year,race) {
-    const response = await fetch(backend_url + "/getQualiResults", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getQualiResults", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -106,7 +106,7 @@ function Stats(){
   }
 
   async function getApi(){
-    await fetch(backend_url + "/drivers").then(
+    await fetch(process.env.REACT_APP_BACKEND_URL + "/drivers").then(
       res => res.json()
     ).then(
       data => {

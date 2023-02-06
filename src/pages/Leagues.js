@@ -4,11 +4,12 @@ import { useNavigate, Link } from "react-router-dom";
 
 function Leagues(){
 
-  const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "https://api.playf1fantasy.com"
   // const backend_url = "f1-fantasy-backend.us-east-2.elasticbeanstalk.com"
   const [leagueName, setLeagueName] = useState("")
   const [leagueCode, setLeagueCode] = useState("")
   const [leaguesList, setLeaguesList] = useState([])
+  const [userSignedIn, setUserSignedIn] = useState(false)
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -37,7 +38,7 @@ function Leagues(){
   }
 
   async function createLeague() {
-    const response = await fetch(backend_url + "/createLeague", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/createLeague", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -49,7 +50,7 @@ function Leagues(){
   }
 
   async function joinLeague() {
-    const response = await fetch(backend_url + "/joinLeague", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/joinLeague", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -61,7 +62,7 @@ function Leagues(){
   }
 
   async function getUsersLeagues() {
-    const response = await fetch(backend_url + "/getUsersLeagues", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getUsersLeagues", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -71,7 +72,12 @@ function Leagues(){
     body: JSON.stringify({token:localStorage.getItem('token')}) // body data type must match "Content-Type" header
   })
   .then(response => response.json())
-  .then(data => setLeaguesList(data["leaguesList"]))
+  .then(data => {
+    if (data["leaguesList"] != null){
+      setLeaguesList(data["leaguesList"])
+      setUserSignedIn(true)
+    }
+  })
   }
 
   // const leaveLeague = e =>{
@@ -82,7 +88,7 @@ function Leagues(){
     
     e.stopPropagation()
     console.log(e.target.value)
-    const response = await fetch(backend_url + "/leaveLeague", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/leaveLeague", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -125,12 +131,12 @@ function Leagues(){
 
       <div className="center-flex">
         <div className="leagues-container">
+        {(userSignedIn == false) ? (<h3 className='white'>You must sign in first</h3>):(<h3></h3>)}
         {
           leaguesList.map(function(key, index) {
             return(
-              <div onClick={()=>leagueLink(key)} className="league-card white">
-                {console.log(key)}
-                <h3>{key["leagueName"]}</h3>
+              <div onClick={()=>leagueLink(key)} className="league-card">
+                <div><h3>{key["leagueName"]}</h3></div>
                 <button onClick={e => leaveLeague(e, "value")} value={key["leagueID"]}>Leave League</button>
               </div>
             )
@@ -139,6 +145,7 @@ function Leagues(){
         </div>
       </div>
       
+
 
       <div className="popup-container">
         <div onClick={()=>closePopup()} className="form-background" id="formBG">

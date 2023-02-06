@@ -5,7 +5,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 function LeaguesPage() {
 
   let { id } = useParams();
-  const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "https://api.playf1fantasy.com"
   const [memberTeamsList,setMemberTeamsList] = useState({})
   const [points,setPoints] = useState({})
   const [costs,setCosts] = useState({})
@@ -23,7 +23,7 @@ function LeaguesPage() {
   },[])
 
   async function getRaces() {
-    const response = await fetch(backend_url + "/sendYear", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/sendYear", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -38,7 +38,7 @@ function LeaguesPage() {
   }
 
   async function getPoints(race) {
-    const response = await fetch(backend_url + "/getPoints", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getPoints", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -51,7 +51,7 @@ function LeaguesPage() {
   }
 
   async function getCosts(race) {
-    const response = await fetch(backend_url + "/getCosts", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getCosts", {
     method: 'POST', 
     mode: 'cors',
     headers: {
@@ -64,7 +64,7 @@ function LeaguesPage() {
   }
 
   async function getLeagueInfo() {
-    const response = await fetch(backend_url + "/getLeagueInfo", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getLeagueInfo", {
     method: 'POST', 
     mode: 'cors',
     headers: {

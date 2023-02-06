@@ -10,10 +10,12 @@ import LogIn from './pages/LogIn';
 import TeamBuilder from './pages/TeamBuilder';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
+
+
 function App(){
-  
-  const backend_url = "https://api.playf1fantasy.com"
-  // const backend_url = "http://f1fantasyflask-3.eba-ugqpypxw.us-east-2.elasticbeanstalk.com"
+  // const backend_url = "https://api.playf1fantasy.com"
+  // const backend_url = "http://127.0.0.1:5000"
   const [loggedIn, setLoggedIn] = useState(localStorage.getItem('token'));
   const [userName, setUserName] = useState();
 
@@ -25,7 +27,7 @@ function App(){
   }, [userName])
 
   async function getUserName() {
-    const response = await fetch(backend_url + "/getUserName", {
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getUserName", {
     method: 'POST', 
     mode: 'cors',
     headers: {
