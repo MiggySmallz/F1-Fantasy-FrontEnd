@@ -160,6 +160,7 @@
     align-items: center;
     width: 130%;
     min-height: 4em;
+    justify-content: center;
 }
 
 
