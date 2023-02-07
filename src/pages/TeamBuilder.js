@@ -22,6 +22,7 @@ function TeamBuilder(){
   const[teamSaved, setTeamSaved] = useState(1)
   const[usersTeams, setUsersTeams] = useState([])
   const[userTeamsFound, setUserTeamsFound] = useState(false)
+  const[currentTeam, setCurrentTeam] = useState("")
   const currentBudget = budget / 100000000*100;
 
   function convertBudget(value)
@@ -136,7 +137,6 @@ function TeamBuilder(){
   }
 
   useEffect(() => {
-   
     getDrivers();
     getUsersTeams();
     setTeamSaved(false);
@@ -155,7 +155,7 @@ function TeamBuilder(){
   }
 
   const addToTeamList = (team) => {
-
+    setCurrentTeam(team);
     setBudget(team.sort()[team.length - 1]["budget"])
     setTeamList(team.sort().slice(0,[team.length - 1]))    
     setDrivers(driversNoChange);
@@ -193,7 +193,7 @@ function TeamBuilder(){
 
   return (
     <div className="container-TeamBuilder white">
-      <div className="teams">
+      {/* <div className="teams">
         <div className="teamTitle">
           My Teams
         </div>
@@ -210,15 +210,21 @@ function TeamBuilder(){
             })
           }
         </div>
-      </div>
+      </div> */}
       <div className='container-team-select'>
         <div className='budget'>Budget:<ProgressBar className='progressBar'  variant="success" now={currentBudget} /*label={`${budget}`}*//>${convertBudget(budget)}</div>
         <div className='break'></div>
-        <div className='teamList'>
-            <div className="teamNameInput">
+        {/* <div className='teamList'> */}
+        <div className='userTeamList'>
+            <select onChange = {(event) => addToTeamList(usersTeams[event.target.value])} className="selectorButton white center-text">
+              <option selected disabled hidden value="none">Select Team</option>
+              {Object.keys(usersTeams).map((key, value) => <option value={key}>{key}</option>)}
+            </select>
+            {/* <div className="teamNameInput">
               <input onChange={e => setTeamName(e.target.value)} placeholder="Enter team name:"></input>
               <button className="saveTeamButton" onClick={() => handleOnClick()} >Save Team</button>
-            </div>
+            </div> */}
+
             { teamList.sort((a, b) => a.id > b.id ? 1 : -1).map((item) =>{
               if (item.driver != null){
                 return(
@@ -247,6 +253,11 @@ function TeamBuilder(){
                 )
               }
             })}
+            {(currentTeam != "")?(<button className="teamDelete white" onClick={e => deleteTeam(currentTeam)}>Delete Team</button>):(<br/>)}
+            <div className="teamNameInput">
+              <input onChange={e => setTeamName(e.target.value)} placeholder="Enter team name:"></input>
+              <button className="saveTeamButton" onClick={() => handleOnClick()} >Save Team</button>
+            </div>
 
         </div>
         <div className='break-column'></div>
@@ -255,24 +266,18 @@ function TeamBuilder(){
             <button id={constructorBtn} className="selectorButton white" onClick={() => {setConstructorBtn((constructorBtn) => (constructorBtn === "btnOff" ? "btnOn" : "btnOff")); setDriverBtn((driverBtn) => (driverBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Constructors</button>
           
         <div className='teamList'>
-          
             
             { (driverBtn === "btnOn")?
             (drivers.sort((a, b) => a.cost < b.cost ? 1 : -1).map((item) =>{
-
               return(
                 <div onClick={() => addDriver(item)} className='item-container highlight'>
-                  
                   <img className='driverImg' src={item.driverImg} width="500" height="600"></img>
-                  
                   <div className='driverTitle'>
                     {item.driver}
                   </div>
-
                   <div className='priceLabelDiv'>
                     <p className='priceLabel'>${convertBudget(item.cost)}</p>
                   </div>
-                  
                 </div>
               )
             }))
