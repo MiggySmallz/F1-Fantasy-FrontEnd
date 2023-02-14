@@ -101,13 +101,13 @@ function LeaguesPage() {
         <div className = "memberNameList">
           <div className='dropDowns'>
             <div>
-              <h4>Races:</h4>
+              <h5>Races:</h5>
               <select onChange={e => getPoints(e.target.value)} className="dropdownList">
               {races.map(key => Object.entries(key).map(([key, value]) => <option value={key} key={value}>{value}</option>))}
               </select>
             </div>
             <div>
-              <h4>League Members:</h4>
+              <h5>League Members:</h5>
               <select onChange={e => setMember(e.target.value)} className="dropdownList">
               {Object.keys(memberTeamsList).map(key => <option value={key} >{key}</option>)}
               </select>
@@ -132,14 +132,13 @@ function LeaguesPage() {
 
         <div className="memberTeam">
 
-        {/* <table className="memberTeam-table white">
+        {/* <table className="memberTeam-table">
           <thead>
             <tr>
               <td></td>
               <td>Driver</td>
               <td>Points</td>
               <td>Cost</td>
-              <td></td>
             </tr>
           </thead>
           <tbody>
@@ -150,11 +149,10 @@ function LeaguesPage() {
               return(
 
                 <tr>
-                  <td></td>
-                  <td className='driverIcon'><img className='driverIcon' src={Object.values(key)}></img>{Object.keys(key)}</td>
+                  <td className='driverIcon'><img className='driverIcon' src={Object.values(key)}></img></td>
+                  <td>{Object.keys(key)}</td>
                   {(points[Object.keys(key)] > 0) ? (<td className='green'>{points[Object.keys(key)]}</td>):(<td className='red'>{points[Object.keys(key)]}</td>)}
                   <td>{convertBudget(costs[Object.keys(key)])}</td>
-                  <td></td>
                 </tr>
 
               )                              
@@ -162,7 +160,9 @@ function LeaguesPage() {
           }       
           </tbody>
         </table>    */}
-        <div className="titleCard"><div></div><div>Driver Name</div><div>Points</div><div>Cost</div><div></div></div>
+
+
+        <div className="titleCard"><div></div><b>Driver Name</b><b>Points</b><b>Cost</b><div></div></div>
         {
             memberTeamsList[currentMember]?.map(function(key) {        
               return(
