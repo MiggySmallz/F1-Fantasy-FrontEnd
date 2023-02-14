@@ -161,6 +161,10 @@ td{
   font-weight: bold;
 }
 
+.loadingSpinner{
+  height: 40px;
+}
+
 @media screen and (max-width: 1275px) {
   .driverCard, .titleCard {
     width:50vw;

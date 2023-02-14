@@ -36,7 +36,7 @@ function Home(){
 
   return(
     <div>
-      <h1 className="white center-text">2022 Final Points</h1>      
+      <h1 className="white title">2022 Final Points</h1>      
       <div>
         <table className="table table-bordered standings-table">
           <thead>
@@ -51,16 +51,7 @@ function Home(){
             {(typeof data.result === 'undefined') ? (
               <p className="white">Loading...</p>
             ) : (
-              // Object.entries(data.result[0].FullName).map(([key, value1]) => {
-                
-              //   return (
-              //       <tr>
-              //           <td>{value1}</td>
-              //           <td>{data.result[0].Abbreviation[key]}</td>
-              //           <td>{data.result[0].DriverNumber[key]}</td>
-              //       </tr>
-              //   )
-              // })
+
               data.result.map(key => {
                 
                 return (

@@ -92,78 +92,113 @@
 }
 
   /* The popup form - hidden by default */
-  .form-background{
-    display: none;
-    background-color: rgba(128, 128, 128, 0.8);
-    z-index: 8;
-    width: 100vw;
-    height: 90vh;
+.form-background{
+  display: none;
+  background-color: rgba(128, 128, 128, 0.8);
+  z-index: 8;
+  width: 100vw;
+  height: 90vh;
+}
+
+.form-popup {
+  display: none;
+  width: 30%;
+  height: 50%;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-popup h1{
+  text-align: center;
+}
+
+.popup-container{
+  position: relative;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+.form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 575px) {
+  .league-card{
+    height: 16em;
+    width: 25em;
   }
 
-  .form-popup {
-    display: none;
-    width: 30%;
-    height: 50%;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  .league-card > button {
+    top: 10.5em;
+    left: 17.73em;
   }
 
-  .form-popup h1{
-    text-align: center;
+  .title{
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .league-card{
+    height: 13em;
+    width: 20em;    
   }
 
-  .popup-container{
-    position: relative;
-    z-index: 9;
+  .league-card > button {
+    top: 7.5em;
+    left: 12.73em;
   }
-  
-  /* Add styles to the form container */
-  .form-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    padding: 10px;
-    background-color: white;
+
+  .title{
+    font-size: 24px;
   }
-  
-  /* Full-width input fields */
-  .form-container input[type=text], .form-container input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    border: none;
-    background: #f1f1f1;
-  }
-  
-  /* When the inputs get focus, do something */
-  .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
-  
-  /* Set a style for the submit/login button */
-  .form-container .btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-  }
-  
-  /* Add a red background color to the cancel button */
-  .form-container .cancel {
-    background-color: red;
-  }
-  
-  /* Add some hover effects to buttons */
-  .form-container .btn:hover, .open-button:hover {
-    opacity: 1;
-  }
+#join-league-btn {
+  margin: 1.5em 0em 0.7em 1.5em;
+}
+}
 

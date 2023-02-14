@@ -12,6 +12,7 @@ function LeaguesPage() {
   const [leagueName, setLeagueName] = useState("")
   const [currentMember, setCurrentMember] = useState("Kris")
   const [races, setRaces] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     
@@ -51,6 +52,7 @@ function LeaguesPage() {
   }
 
   async function getPoints(race) {
+    setIsLoading(true)
     const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getPoints", {
     method: 'POST', 
     mode: 'cors',
@@ -61,6 +63,7 @@ function LeaguesPage() {
   })
   .then(response => response.json())
   .then(data => setPoints(data["points"]))
+  setIsLoading(false)
   }
 
   async function getCosts(race) {
@@ -161,7 +164,6 @@ function LeaguesPage() {
           </tbody>
         </table>    */}
 
-
         <div className="titleCard"><div></div><b>Driver Name</b><b>Points</b><b>Cost</b><div></div></div>
         {
             memberTeamsList[currentMember]?.map(function(key) {        
@@ -170,7 +172,13 @@ function LeaguesPage() {
                 <div className="driverCard">
                   <img className='driverIcon' src={Object.values(key)}></img>
                   <b>{Object.keys(key)}</b>
-                  {(points[Object.keys(key)] > 0) ? (<div className='green'>{points[Object.keys(key)]}</div>):(<div className='red'>{points[Object.keys(key)]}</div>)}
+
+                  
+                  {(isLoading) ? (<img className="loadingSpinner" src={require('../images/spinner.gif')}/>):
+                  (
+                    (points[Object.keys(key)] > 0) ? (<div className='green'>{points[Object.keys(key)]}</div>):(<div className='red'>{points[Object.keys(key)]}</div>)
+                  )}
+                  {/* {(points[Object.keys(key)] > 0) ? (<div className='green'>{points[Object.keys(key)]}</div>):(<div className='red'>{points[Object.keys(key)]}</div>)} */}
                   <div>{convertBudget(costs[Object.keys(key)])}</div>
                 </div>
 
