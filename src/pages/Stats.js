@@ -12,6 +12,7 @@ function Stats(){
   const [selectedRaces, setSelectedRaces] = useState([]);
   const [selectedRaceType, setSelectedRaceType] = useState("Race");
   const [selectedYear, setSelectedYear] = useState();
+  const [isVisible, setIsVisible] = useState(false);
 
   const year = ['2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022'];
 
@@ -39,6 +40,12 @@ function Stats(){
   const changeSelectYearOptionHandler = (event) => {
     setSelectedYear(event.target.value);
     postData(event.target.value);
+
+    if (event.target.value) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
   };
 
   const changeSelectEventTypeOptionHandler = (event) => {
@@ -154,9 +161,11 @@ function Stats(){
             {yearOptions}
           </select>
 
+          {isVisible ? (
           <select onChange={changeSelectEventTypeOptionHandler}>
             {options}
           </select>
+          ) : null}
         </div>
       </form>
 

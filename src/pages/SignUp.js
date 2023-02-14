@@ -42,26 +42,26 @@ function SignUp(){
         <input className="input"></input>
         <input className="input"></input>
       </div> */}
-      <div class="box" id="signup">
+      <div className="box" id="signup">
         <form onSubmit={handleSubmit}>
-            <span class="text-center">Sign Up</span>
-            <div class="input-container">
+            <span className="text-center">Sign Up</span>
+            <div className="input-container">
               <input onInput={e => setFirstName(e.target.value)} type="text" required/>
               <label>First Name</label>		
             </div>
-            <div class="input-container">
+            <div className="input-container">
               <input onInput={e => setLastName(e.target.value)} type="text" required/>
               <label>Last Name</label>		
             </div>
-            <div class="input-container">		
+            <div className="input-container">		
               <input onInput={e => setEmail(e.target.value)} type="text" required/>
               <label>Email</label>
             </div>
-            <div class="input-container">		
+            <div className="input-container">		
               <input onInput={e => setPass(e.target.value)} type="password" required/>
               <label>Password</label>
             </div>
-            <button type="submit" class="btn">Submit</button>
+            <button type="submit" className="btn">Submit</button>
           
         </form>	
       

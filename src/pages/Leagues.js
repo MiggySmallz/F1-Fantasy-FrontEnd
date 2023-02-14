@@ -152,7 +152,7 @@ function Leagues(){
 
         </div>
         <div className="form-popup" id="createLeague">
-          <form onSubmit={handleCreateLeague} class="form-container">
+          <form onSubmit={handleCreateLeague} className="form-container">
             <h1>Create a League</h1>
 
             <label><b>League Name</b></label>
@@ -161,20 +161,20 @@ function Leagues(){
             <label><b>League Code</b></label>
             <input onInput={e => setLeagueCode(e.target.value)} type="text" placeholder='Enter "League Code"' required></input>
 
-            <button type="submit" class="btn">Login</button>
-            <button onClick={()=>closePopup()} type="button" class="btn cancel">Close</button>
+            <button type="submit" className="btn">Login</button>
+            <button onClick={()=>closePopup()} type="button" className="btn cancel">Close</button>
           </form>
         </div>
 
         <div className="form-popup" id="joinLeague">
-          <form onSubmit={handleJoinLeague} class="form-container">
+          <form onSubmit={handleJoinLeague} className="form-container">
             <h1>Join League</h1>
 
             <label><b>League Code</b></label>
             <input onInput={e => setLeagueCode(e.target.value)} type="text" placeholder='Enter "League Code"'required></input>
 
-            <button type="submit" class="btn">Login</button>
-            <button onClick={()=>closePopup()} type="button" class="btn cancel">Close</button>
+            <button type="submit" className="btn">Login</button>
+            <button onClick={()=>closePopup()} type="button" className="btn cancel">Close</button>
           </form>
         </div>
       </div>

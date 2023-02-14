@@ -57,6 +57,7 @@
     height: 3em;
     width: 8em;
     margin: 1em auto;
+    border-radius: 10px;
 
 }
 
@@ -67,11 +68,12 @@
 }
 
 .item-container{
-    background-color: rgb(62, 62, 73);
+    background-color: rgb(209, 209, 216);
     margin: 20px 20px 0px 20px;
     height: 5em;
     width: auto;
     display: flex; 
+    border-radius: 10px;
 }
 
 /* .team-item-container:hover{

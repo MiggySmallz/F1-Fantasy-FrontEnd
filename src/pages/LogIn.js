@@ -47,7 +47,7 @@ function LogIn(){
 
   
   const ErrorMsg = () => (
-    <p class="error-message">*Incorrect Username or password</p>
+    <p className="error-message">*Incorrect Username or password</p>
   )
 
 
@@ -64,20 +64,20 @@ function LogIn(){
   return (
     // <div className="background">
     <div>
-      <div class="box" id="login">
+      <div className="box" id="login">
         <form onSubmit={handleSubmit}>
-          <span class="text-center">Log In</span>
-        <div class="input-container">		
+          <span className="text-center">Log In</span>
+        <div className="input-container">		
           <input type="text" required onChange={e => setEmail(e.target.value)}/>
           <label>Email</label>
         </div>
-        <div class="input-container">		
+        <div className="input-container">		
           <input type="password" required onChange={e => setPassword(e.target.value)}/>
           <label>Password</label>
         </div>
           { errorMessage ? <ErrorMsg /> : null }
           {/* { redirect ? <Redirect /> : null } */}
-          <button type="submit" class="btn">submit</button>
+          <button type="submit" className="btn">submit</button>
       </form>	
       </div>
     </div>

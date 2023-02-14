@@ -1,18 +1,43 @@
+.titleCard{
+  display: flex;
+  height: 3em;
+  align-items: center;
+  /* margin-right: 2em; */
+  background-color: rgb(231, 230, 237);
+  width: 40vw;
+  justify-content:flex-end;
+  gap: calc(90vw/20);
+  border-radius: 10px;
+}
+
+.titleCard > h5{
+  margin-bottom: 0;
+  text-decoration: underline;
+}
+
 .driverCard{
   display: flex;
-  object-fit: contain;
   height: 7em;
-  /* max-width: 14em; */
   margin-top: 1.5em;
   align-items: center;
-  margin-left: 1em;
+  /* margin-right: 2em; */
+  background-color: rgb(231, 230, 237);
+  width: 40vw;
+  justify-content: space-around;
+  border-radius: 10px;
+}
+
+.driverCard > *{
+  margin-right: 2em;
+  margin-left: 2em;
 }
 
 .driverIcon{
   object-fit: contain;
-  height: 6em;
-  width: 12em;
-  /* margin-right: 5em; */
+  height: 7em;
+  width: 7em;
+  align-self: end;
+  /* margin-left: 2em; */
 }
 
 .background{
@@ -29,21 +54,30 @@
 
 .main-view{
   display: flex;
-  flex-direction: row-reverse;
+  /* flex-direction: row-reverse; */
   justify-content: center;
-  height: 85vh;
+
+
+  flex-direction: column;
+  align-items: center;
+
 }
 
 .memberNameList{
+  /* display: flex; */
   padding-top: 1em;
-  width: 20%;
-  background-color: rgb(146, 123, 168);
+  /* width: 20%; */
+  /* background-color: rgb(146, 123, 168); */
+
   text-align: center;
+  width: 65%;
+  margin-bottom: 2em;
+
 }
 
 .memberName{
   margin-bottom: .6em;
-  font-size: 1.5em;
+  font-size: 1.2em;
   /* color: white; */
   text-align: center;
 }
@@ -56,19 +90,30 @@
 .memberTeam{
   display: flex;
   flex-direction: column;
-  width: 40%;
-  background-color: rgb(52, 56, 83);
+  width: 50vw;
+  /* background-color: rgb(52, 56, 83); */
   align-items: center;
+  justify-content: center;
 }
 
-.raceList{
-  margin-left: 20%;
-  font-size: 1.5rem; 
+.dropdownList{
+  /* margin-left: 15%; */
+  width:15vw;
+  font-size: 1.2rem; 
   max-height: 500px;
+  margin: 0 1em 0 1em;
+  border-radius: 5px;
 }
 
-.driverCard > *{
-  margin-right: 4em;
+.dropDowns{
+  color: white;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.memberTitle{
+  margin-top: 5%;
 }
 
 .memberTeam-table{
@@ -77,9 +122,15 @@
   text-align: center;
   border-radius: 5px;
   border: transparent;
-  width: 40vw;
+  /* width: 40vw; */
+  /* width: 100%; */
   font-family: Arial, Helvetica, sans-serif;
-  border-spacing: 4em 1.5em;
+  border-spacing: 3em 1.5em;
+}
+
+td{
+  width:20%;
+  /* white-space: nowrap; */
 }
 
 .memberTeam-table > thead{
@@ -96,4 +147,98 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 1145px) {
+  .driverCard, .titleCard {
+    width:50vw;
+  }
 
+  /* .memberNameList{
+    width: 25%;
+  } */
+
+  .dropdownList{
+    width: 20vw;
+  }
+}
+
+/* @media screen and (max-width: 900px) {
+  .driverCard, .titleCard {
+    width:50vw;
+  }
+
+  .memberNameList{
+    width: 25%;
+  }
+} */
+
+@media screen and (max-width: 900px) {
+  .driverCard, .titleCard {
+    width:60vw;
+    /* margin-left: 2em; */
+  }
+
+  .raceList {
+    font-size: 0.9rem;
+  }
+  .memberTitle{
+    font-size: 1rem;
+  }
+
+  .dropdownList{
+    width: 25vw;
+  }
+
+  .memberName{
+    font-size: 0.8rem;
+  }
+
+  .memberTeam{
+    width: 65%;
+  }
+
+  .memberTeam-table{
+    border-spacing: 1em;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .driverCard, .titleCard {
+    width:80vw;
+    /* margin-left: 2em; */
+  }
+
+  .dropdownList{
+    width: 35vw;
+  }
+
+  .memberNameList{
+    width: 100%;
+  }
+
+  .titleCard{
+    gap: calc(150vw/20);
+  }
+ 
+}
+
+@media screen and (max-width: 570px) {
+  .driverCard, .titleCard {
+    width:98vw;
+    /* margin-left: 2em; */
+  }
+
+  .dropdownList{
+    width: 44vw;
+    margin: 0 0.5em 0 0.5em;
+  }
+
+  .memberNameList{
+    width: 100%;
+  }
+
+  .driverCard > * {
+    margin-right: auto;
+    margin-left: auto;
+  }
+ 
+}

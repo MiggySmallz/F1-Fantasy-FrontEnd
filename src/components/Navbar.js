@@ -30,8 +30,8 @@ class Navigation extends React.Component {
             
                 {this.props.loggedIn ? 
                     <NavDropdown title={this.props.loggedIn} className="dropdown">
-                    <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item>
-                    <NavDropdown.Divider />
+                    {/* <NavDropdown.Item href="/Profile">Profile</NavDropdown.Item> */}
+                    {/* <NavDropdown.Divider /> */}
                     <NavDropdown.Item href="/" onClick={this.handleClick}>Log Out</NavDropdown.Item>
                     </NavDropdown> : 
                     <Nav>

@@ -36,17 +36,7 @@ function Home(){
 
   return(
     <div>
-      
-      {/* {(typeof data.result === 'undefined') ? (
-        <p>Loading...</p>
-      ) : (
-
-        // Object.entries(data.result[0].Abbreviation)
-        // .map( ([key, value]) => `My key is ${key} and my value is ${value}` )
-        data.result.map(key => key)
-      )} */}
-
-      
+      <h1 className="white center-text">2022 Final Points</h1>      
       <div>
         <table className="table table-bordered standings-table">
           <thead>

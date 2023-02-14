@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {ProgressBar} from "react-bootstrap"
-// import { StyleSheet, Text, View, TextInput} from 'react-native'
 import "./TeamBuilder.css"
+
 
 function TeamBuilder(){
 
@@ -75,18 +75,23 @@ function TeamBuilder(){
   )
 
   async function saveTeam() {
-    console.log(teamList)
-    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/saveTeam", {
-    method: 'POST', 
-    mode: 'cors',
-    headers: {
-      'Content-Type': 'application/json'
-      // 'Access-Control-Allow-Origin': 'http://localhost:5000/'
-    },
-    body: JSON.stringify({team:teamList, budget:budget, token:localStorage.getItem('token'), teamName: teamName}) // body data type must match "Content-Type" header
-  })
-  .then(response => {response.json(); setTeamSaved(true)})
-  getUsersTeams();
+    if (localStorage.getItem('token') == null){
+      alert("You must be signed in to create a team")
+    }
+    else{
+      const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/saveTeam", {
+        method: 'POST', 
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Access-Control-Allow-Origin': 'http://localhost:5000/'
+        },
+        body: JSON.stringify({team:teamList, budget:budget, token:localStorage.getItem('token'), teamName: teamName}) // body data type must match "Content-Type" header
+      })
+      .then(response => {response.json(); setTeamSaved(true)})
+      getUsersTeams();
+    }
+    
   }
 
   async function deleteTeam(e) {
@@ -155,7 +160,6 @@ function TeamBuilder(){
   }
 
   const addToTeamList = (team) => {
-    setCurrentTeam(team);
     setBudget(team.sort()[team.length - 1]["budget"])
     setTeamList(team.sort().slice(0,[team.length - 1]))    
     setDrivers(driversNoChange);
@@ -192,7 +196,7 @@ function TeamBuilder(){
   }
 
   return (
-    <div className="container-TeamBuilder white">
+    <div className="container-TeamBuilder">
       {/* <div className="teams">
         <div className="teamTitle">
           My Teams
@@ -212,11 +216,11 @@ function TeamBuilder(){
         </div>
       </div> */}
       <div className='container-team-select'>
-        <div className='budget'>Budget:<ProgressBar className='progressBar'  variant="success" now={currentBudget} /*label={`${budget}`}*//>${convertBudget(budget)}</div>
+        <div className='budget white'>Budget:<ProgressBar className='progressBar'  variant="success" now={currentBudget} /*label={`${budget}`}*//>${convertBudget(budget)}</div>
         <div className='break'></div>
         {/* <div className='teamList'> */}
         <div className='userTeamList'>
-            <select onChange = {(event) => addToTeamList(usersTeams[event.target.value])} className="selectorButton white center-text">
+            <select onChange = {(event) => {addToTeamList(usersTeams[event.target.value]); setCurrentTeam(event.target.value)}} className="selectorButton white">
               <option selected disabled hidden value="none">Select Team</option>
               {Object.keys(usersTeams).map((key, value) => <option value={key}>{key}</option>)}
             </select>
