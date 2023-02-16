@@ -27,7 +27,7 @@ function Home(){
     ).then(
       data => {
         setData(data)
-        console.log(data.result[0])
+        // console.log(data.result[0])
       }
     )
 // -------------------------------------Commented out just for less api use ------------------------------ //
@@ -36,6 +36,7 @@ function Home(){
 
   return(
     <div>
+      <div className="banner">*NOTE* This site has been built by Miguel Nobre and is currently still under development</div>
       <h1 className="white title">2022 Final Points</h1>      
       <div>
         <table className="table table-bordered standings-table">
@@ -55,7 +56,7 @@ function Home(){
               data.result.map(key => {
                 
                 return (
-                    <tr>
+                    <tr key={key}>
                         <td>{key[0]}</td>
                         <td>{key[1]}</td>
                         <td>{key[2]}</td>

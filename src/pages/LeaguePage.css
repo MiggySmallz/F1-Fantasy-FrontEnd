@@ -74,7 +74,10 @@
 }
 
 .memberNameList{
-  /* display: flex; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   padding-top: 1em;
   /* width: 20%; */
   /* background-color: rgb(146, 123, 168); */
@@ -163,6 +166,43 @@ td{
 
 .loadingSpinner{
   height: 40px;
+}
+
+.addTeamBtn, .delTeamBtn{
+  background-color: green;
+  color: white;
+  width: 7em;
+  height: 3em;
+  border-radius: 5px;
+}
+
+.delTeamBtn{
+  background-color: rgb(217, 16, 16);
+  height: 3.2em;
+}
+
+.teamsToAdd{
+  background-color: rgb(173, 177, 190);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+  height: 2.5em;
+  padding: 0.5em 0;
+  width: 30vw;
+  align-self: center;
+}
+
+.teamsToAddList{
+  display: none;
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 10px;
+}
+
+.teamsToAddList > div:hover{
+  background-color: rgb(195, 196, 207);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1275px) {

@@ -221,7 +221,7 @@ function TeamBuilder(){
         {/* <div className='teamList'> */}
         <div className='userTeamList'>
             <select onChange = {(event) => {addToTeamList(usersTeams[event.target.value]); setCurrentTeam(event.target.value)}} className="selectorButton white">
-              <option selected disabled hidden value="none">Select Team</option>
+              <option value="default" selected disabled hidden>Select Team</option>
               {Object.keys(usersTeams).map((key, value) => <option value={key}>{key}</option>)}
             </select>
             {/* <div className="teamNameInput">

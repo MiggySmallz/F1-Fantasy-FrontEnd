@@ -128,6 +128,7 @@
   width: 100%;
   padding: 10px;
   background-color: white;
+  border-radius: 20px;
 }
 
 /* Full-width input fields */
@@ -155,6 +156,7 @@
   width: 100%;
   margin-bottom:10px;
   opacity: 0.8;
+  border-radius: 10px;
 }
 
 /* Add a red background color to the cancel button */

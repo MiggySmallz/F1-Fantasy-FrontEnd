@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, useContext} from 'react'
 import "./LeaguePage.css"
 import { useNavigate, Link, useParams } from "react-router-dom";
+import { UserNameContext } from '../App';
 
 function LeaguesPage() {
 
@@ -13,15 +14,24 @@ function LeaguesPage() {
   const [currentMember, setCurrentMember] = useState("Kris")
   const [races, setRaces] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [hasTeam, setHasTeam] = useState(false)
+  const[usersTeams, setUsersTeams] = useState([])
+  const[teamIDs, setTeamIDs] = useState([])
+  const[fname, setFname] = useState("")
+
+  const[teamChange, setTeamChange] = useState(false)
+
+  const userName = useContext(UserNameContext);
+  // console.log("USERNAME IS:" + userName)
 
   useEffect(() => {
     
-    getLeagueInfo()
-    getRaces()
-    getPoints()
-    getCosts()
+    getLeagueInfo();
+    getRaces();
+    getPoints();
+    getCosts();
 
-  },[])
+  },[teamChange])
 
   function convertBudget(value)
   {
@@ -47,7 +57,7 @@ function LeaguesPage() {
     body: JSON.stringify({year:-1}) // body data type must match "Content-Type" header
   })
     .then(response => response.json())
-    .then(data => {setRaces(data["races"]); console.log(data["races"])});
+    .then(data => {setRaces(data["races"])});
     return response; // parses JSON response into native JavaScript objects
   }
 
@@ -86,19 +96,96 @@ function LeaguesPage() {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({leagueID:id})
+    body: JSON.stringify({leagueID:id, token:localStorage.getItem('token')})
   })
   .then(response => response.json())
-  .then(data => {setMemberTeamsList(data["memberTeamsList"]); setLeagueName(data["leagueName"])})
+  .then(data => {setMemberTeamsList(data["memberTeamsList"]); setLeagueName(data["leagueName"]); setFname(data["fname"])})
   }
 
-  const setMember = (key) => {
-    setCurrentMember(key)
+
+
+
+  // ////////////////////////////
+  async function getUsersTeams() {
+    unhidePopup()
+
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/getUsersTeams", {
+    method: 'POST', 
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Access-Control-Allow-Origin': 'http://localhost:5000/'
+    },
+    body: JSON.stringify({token:localStorage.getItem('token')}) // body data type must match "Content-Type" header
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("asd")
+    if (data["teamList"] != null){
+      setUsersTeams(data["teamList"])
+      setTeamIDs(data["teamIDs"])
+      // console.log(data["teamIDs"])
+    }
+    
+  })
   }
 
+  async function addTeam(teamID){
+
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/addToLeague", {
+    method: 'POST', 
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({leagueID:id, token:localStorage.getItem('token'), teamID:teamID})
+  })
+  .then(response => response.json())
+  .then(data => {})
+  setTeamChange(!teamChange)
+  setCurrentMember(fname)
+  changeSelected(fname)
+  }
+
+  async function removeTeam(){
+
+    const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/removeFromLeague", {
+    method: 'POST', 
+    mode: 'cors',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({leagueID:id, token:localStorage.getItem('token')})
+  })
+  .then(response => response.json())
+  .then(data => {})
+  setTeamChange(!teamChange)
+  }
+
+  function unhidePopup(){
+    document.getElementById("teamsToAddList").style.display = "block";
+  }
+
+  function hidePopup(){
+    document.getElementById("teamsToAddList").style.display = "none";
+  }
+
+  function changeSelected(name){
+    const $select = document.querySelector('#leagueTeams');
+    $select.value = name
+  };
+
+
+  function checkTeam(){
+
+    return(Object.keys(memberTeamsList).includes(fname))
+      
+  }
 
   return (
     <div className="background">
+
+
       <h3 className = "leagueTitle white">League: {leagueName}</h3>
       <div className="main-view">        
         <div className = "memberNameList">
@@ -110,14 +197,22 @@ function LeaguesPage() {
               </select>
             </div>
             <div>
-              <h5>League Members:</h5>
-              <select onChange={e => setMember(e.target.value)} className="dropdownList">
-              {Object.keys(memberTeamsList).map(key => <option value={key} >{key}</option>)}
+              <h5>League Teams:</h5>
+              <select onChange={e => {setCurrentMember(e.target.value)}} className="dropdownList" id="leagueTeams">
+              <option disabled value="DEFAULT">Select A Member...</option>
+              {/* {console.log(memberTeamsList)} */}
+              {Object.keys(memberTeamsList).map(key => <option value={key} key={key}>{key}</option>)}
               </select>
             </div>
+            
+          </div>
+          {(!checkTeam())?(<button className="addTeamBtn" onClick={() => getUsersTeams()}>Add Team</button>) : (<button onClick={() => removeTeam()} className="delTeamBtn" >Remove My Team</button>)}
+          
+          <div className="teamsToAddList" id="teamsToAddList">
+            <h3>Select a Team</h3>
+            {Object.keys(usersTeams).map((key, value) => <div onClick={() => {addTeam(teamIDs[value]); hidePopup()}} className="teamsToAdd" value={key} ><b>{key}</b></div>)}
           </div>
           
-
           
 
 
@@ -163,13 +258,13 @@ function LeaguesPage() {
           }       
           </tbody>
         </table>    */}
-
         <div className="titleCard"><div></div><b>Driver Name</b><b>Points</b><b>Cost</b><div></div></div>
         {
+            
             memberTeamsList[currentMember]?.map(function(key) {        
               return(
-
-                <div className="driverCard">
+                
+                <div key={Object.values(key)} className="driverCard">
                   <img className='driverIcon' src={Object.values(key)}></img>
                   <b>{Object.keys(key)}</b>
 
@@ -188,10 +283,21 @@ function LeaguesPage() {
 
 
 
-
         </div>
 
       </div>
+
+
+      {/* <div className="popup-container">
+      <div className="form-popup" id="formBG">
+        <div className="form-container">
+          <h3>Teams</h3>
+          {Object.keys(usersTeams).map((key, value) => <div className="teamsToAdd" value={key}>{key}</div>)}
+        </div>
+      </div>
+    </div>   */}
+
+
     </div>
     
   );

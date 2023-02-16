@@ -76,6 +76,7 @@ function Leagues(){
     if (data["leaguesList"] != null){
       setLeaguesList(data["leaguesList"])
       setUserSignedIn(true)
+      // console.log(data["leaguesList"])
     }
   })
   }
@@ -87,7 +88,7 @@ function Leagues(){
   async function leaveLeague(e) {
     
     e.stopPropagation()
-    console.log(e.target.value)
+    // console.log(e.target.value)
     const response = await fetch(process.env.REACT_APP_BACKEND_URL + "/leaveLeague", {
     method: 'POST', 
     mode: 'cors',
@@ -135,7 +136,7 @@ function Leagues(){
         {
           leaguesList.map(function(key, index) {
             return(
-              <div onClick={()=>leagueLink(key)} className="league-card">
+              <div key={key} onClick={()=>leagueLink(key)} className="league-card">
                 <div><h3>{key["leagueName"]}</h3></div>
                 <button onClick={e => leaveLeague(e, "value")} value={key["leagueID"]}>Leave League</button>
               </div>
