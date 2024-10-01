@@ -52,7 +52,7 @@ function App(){
           <div className="content">
           <Navbar loggedIn={userName} />
                 <Routes>
-                  <Route exact path="/" element ={<Home />} />
+                  {/* <Route exact path="/" element ={<Home />} /> */}
                   <Route exact path="/Home" element ={<Home />} />
                   <Route path ="/Leagues" element ={<Leagues />} />
                   <Route path ="/Leagues/:id" element ={<LeaguePage />} />

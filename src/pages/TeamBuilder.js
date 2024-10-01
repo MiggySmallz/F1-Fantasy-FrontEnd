@@ -220,6 +220,7 @@ function TeamBuilder(){
         <div className='break'></div>
         {/* <div className='teamList'> */}
         <div className='userTeamList'>
+          {/* <h3 className="center-text white">Your Team</h3> */}
             <select onChange = {(event) => {addToTeamList(usersTeams[event.target.value]); setCurrentTeam(event.target.value)}} className="selectorButton white">
               <option value="default" selected disabled hidden>Select Team</option>
               {Object.keys(usersTeams).map((key, value) => <option value={key}>{key}</option>)}
@@ -266,6 +267,7 @@ function TeamBuilder(){
         </div>
         <div className='break-column'></div>
         <div className="selectorButtons">
+            <h3 className="center-text white">Create Your Team</h3>
             <button id={driverBtn} className="selectorButton white" onClick={() => {setDriverBtn((driverBtn) => (driverBtn === "btnOff" ? "btnOn" : "btnOff")); setConstructorBtn((constructorBtn) => (constructorBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Drivers</button>
             <button id={constructorBtn} className="selectorButton white" onClick={() => {setConstructorBtn((constructorBtn) => (constructorBtn === "btnOff" ? "btnOn" : "btnOff")); setDriverBtn((driverBtn) => (driverBtn === "btnOn" ? "btnOff" : "btnOn"))}} >Constructors</button>
           

@@ -11,7 +11,7 @@ function LeaguesPage() {
   const [points,setPoints] = useState({})
   const [costs,setCosts] = useState({})
   const [leagueName, setLeagueName] = useState("")
-  const [currentMember, setCurrentMember] = useState("Kris")
+  const [currentMember, setCurrentMember] = useState("")
   const [races, setRaces] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [hasTeam, setHasTeam] = useState(false)
@@ -30,6 +30,7 @@ function LeaguesPage() {
     getRaces();
     getPoints();
     getCosts();
+
 
   },[teamChange])
 
@@ -100,6 +101,7 @@ function LeaguesPage() {
   })
   .then(response => response.json())
   .then(data => {setMemberTeamsList(data["memberTeamsList"]); setLeagueName(data["leagueName"]); setFname(data["fname"])})
+
   }
 
 
@@ -120,7 +122,6 @@ function LeaguesPage() {
   })
   .then(response => response.json())
   .then(data => {
-    console.log("asd")
     if (data["teamList"] != null){
       setUsersTeams(data["teamList"])
       setTeamIDs(data["teamIDs"])
@@ -141,10 +142,10 @@ function LeaguesPage() {
     body: JSON.stringify({leagueID:id, token:localStorage.getItem('token'), teamID:teamID})
   })
   .then(response => response.json())
-  .then(data => {})
+  .then(data => {changeSelected(data["fname"])})
   setTeamChange(!teamChange)
   setCurrentMember(fname)
-  changeSelected(fname)
+  
   }
 
   async function removeTeam(){
@@ -173,6 +174,7 @@ function LeaguesPage() {
   function changeSelected(name){
     const $select = document.querySelector('#leagueTeams');
     $select.value = name
+    console.log(name)
   };
 
 
@@ -200,8 +202,9 @@ function LeaguesPage() {
               <h5>League Teams:</h5>
               <select onChange={e => {setCurrentMember(e.target.value)}} className="dropdownList" id="leagueTeams">
               <option disabled value="DEFAULT">Select A Member...</option>
-              {/* {console.log(memberTeamsList)} */}
+              {console.log(Object.keys(memberTeamsList))}
               {Object.keys(memberTeamsList).map(key => <option value={key} key={key}>{key}</option>)}
+              
               </select>
             </div>
             
@@ -213,51 +216,10 @@ function LeaguesPage() {
             {Object.keys(usersTeams).map((key, value) => <div onClick={() => {addTeam(teamIDs[value]); hidePopup()}} className="teamsToAdd" value={key} ><b>{key}</b></div>)}
           </div>
           
-          
-
-
-          {/* <h4 className="memberTitle">League Members</h4>
-          {
-            Object.keys(memberTeamsList).map(function(key, index) {
-              return(
-                <div className='memberName white' onClick={() => setMember(key)}>
-                  {key}
-                </div>
-              )
-            })
-          } */}
         </div>
 
         <div className="memberTeam">
 
-        {/* <table className="memberTeam-table">
-          <thead>
-            <tr>
-              <td></td>
-              <td>Driver</td>
-              <td>Points</td>
-              <td>Cost</td>
-            </tr>
-          </thead>
-          <tbody>
-
-          
-          {
-            memberTeamsList[currentMember]?.map(function(key) {        
-              return(
-
-                <tr>
-                  <td className='driverIcon'><img className='driverIcon' src={Object.values(key)}></img></td>
-                  <td>{Object.keys(key)}</td>
-                  {(points[Object.keys(key)] > 0) ? (<td className='green'>{points[Object.keys(key)]}</td>):(<td className='red'>{points[Object.keys(key)]}</td>)}
-                  <td>{convertBudget(costs[Object.keys(key)])}</td>
-                </tr>
-
-              )                              
-            })
-          }       
-          </tbody>
-        </table>    */}
         <div className="titleCard"><div></div><b>Driver Name</b><b>Points</b><b>Cost</b><div></div></div>
         {
             

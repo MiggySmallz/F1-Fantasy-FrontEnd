@@ -1,0 +1,9 @@
+.drop_down{
+    height: 45px;
+    margin: 0 5px 0 5px;
+    background: rgb(33 37 41);
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+}

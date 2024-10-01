@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef} from 'react'
 import "./Home.css"
+import "./stats.css"
 
 function Stats(){
 
@@ -150,19 +151,19 @@ function Stats(){
     >
       <form>
         <div>
-          <select id="raceType">
+          <select id="raceType" class="drop_down">
             <option selected disabled hidden>Select Event Type</option>
             <option value="Race">Race</option>
             <option value="Qualifier">Qualifier</option>
           </select>
           
-          <select onChange={changeSelectYearOptionHandler}>
+          <select class="drop_down" onChange={changeSelectYearOptionHandler} >
             <option value="none" selected disabled hidden>Select a Year</option>
             {yearOptions}
           </select>
 
           {isVisible ? (
-          <select onChange={changeSelectEventTypeOptionHandler}>
+          <select class="drop_down" onChange={changeSelectEventTypeOptionHandler}>
             {options}
           </select>
           ) : null}
